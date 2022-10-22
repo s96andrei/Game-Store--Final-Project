@@ -2,20 +2,32 @@ import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Games from "../Games/Games";
 import Pagination from "../Pagination/Pagination";
+import HomeCarousel from "../Carousel/HomeCarousel";
 
 
 const Home = () => {
+
     const [games, setGames] = useState([]);
+    // const [prices, setPrices] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage, setPostsPerPage] = useState(10);
+    const [postsPerPage] = useState(10);
 
     useEffect(() => {
         getGames();
-    }, []);
+    }, [currentPage]);
 
     const getGames = async () => {
-        const response = await fetch(`https://api.rawg.io/api/games?key=a3c9cac9b0db4e1f97e8662adb34f2e8&page=1&page_size=40`);
+        const response = await fetch(`https://api.rawg.io/api/games?key=a3c9cac9b0db4e1f97e8662adb34f2e8&page=${currentPage}&page_size=20`);
         const data = await response.json();
+
+        // const responsePrices = await fetch(``);
+        // const dataPrices = await responsePrices.json();
+        // console.log(dataPrices);
+        // // const test = data.results;
+        // // for (let t of test) {
+        // //     t.price = ...;
+        // // }
+        // setPrices();
         setGames(data.results);
         console.log(data.results);
     }
@@ -31,6 +43,9 @@ const Home = () => {
 
     return (
         <div className="App">
+            <div className="mt-5">
+                <HomeCarousel />
+            </div>
             <div className="displayed-games">
                 {games.map(results => (
                     <Games
