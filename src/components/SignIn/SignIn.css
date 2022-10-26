@@ -1,0 +1,9 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.form-container {
+    margin-top: 25vh;
+}

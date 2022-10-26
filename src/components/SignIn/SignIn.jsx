@@ -76,9 +76,12 @@ const SignIn = () => {
     }
 
     return user.email && user.password && user.username ? <h1>You are loged in</h1 > :
-        <div className='text-white container d-block'>
-            <Header />
-            <div className='border container p-3 my-5 rounded'>
+        <div className='text-white container w-25'>
+            <div>
+                <Header />
+            </div>
+
+            <div className='border p-3 rounded form-container'>
                 <Form>
                     <Form.Group className="mb-3" controlId="formUserName">
                         <Form.Label>User Name</Form.Label>
