@@ -1,17 +1,5 @@
-.search-form {
-    min-height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .search-bar {
-    width: 50%;
-    border: none;
-    padding: 10px;
-  }
-
 .displayed-games {
-  display : grid ;
-  grid-template-columns: auto auto auto auto;
+  width: 400px;
+  display: grid;
+  grid-template-columns: auto auto auto;
   }

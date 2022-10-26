@@ -1,0 +1,4 @@
+.buttons {
+    flex-direction: row-reverse;
+    margin-right: 3em;
+}

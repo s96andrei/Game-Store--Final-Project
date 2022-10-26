@@ -17,7 +17,7 @@ const Home = () => {
     }, [currentPage]);
 
     const getGames = async () => {
-        const response = await fetch(`https://api.rawg.io/api/games?key=a3c9cac9b0db4e1f97e8662adb34f2e8&page=${currentPage}&page_size=20`);
+        const response = await fetch(`https://api.rawg.io/api/games?key=a3c9cac9b0db4e1f97e8662adb34f2e8&page=${currentPage}&page_size=12`);
         const data = await response.json();
 
         // const responsePrices = await fetch(``);
@@ -43,7 +43,7 @@ const Home = () => {
 
     return (
         <div className="App">
-            <div className="mt-5">
+            <div className="mt-5 p-1">
                 <HomeCarousel />
             </div>
             <div className="displayed-games">
@@ -56,9 +56,11 @@ const Home = () => {
                         games={currentPosts}
                     />
                 ))};
+            </div>
+            <div className="d-flex justify-content-center">
                 <Pagination
                     postsPerPage={postsPerPage}
-                    totalPosts={games.length}
+                    totalPosts={games.length + 1}
                     paginate={paginate}
                 />
             </div>
