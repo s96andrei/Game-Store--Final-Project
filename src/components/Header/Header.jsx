@@ -1,70 +1,69 @@
-import React from "react";
-import { Dropdown, Badge, Navbar } from "react-bootstrap";
+import React, { useState } from "react";
+import { Badge, Navbar, Container, Nav, Form, Button } from "react-bootstrap";
 import { Cart4, Controller, PersonCircle } from "react-bootstrap-icons";
 import { useNavigate } from "react-router-dom";
-import Cart from "../Cart/Cart";
-import "./Header.css"
+import "./Header.css";
+import { connect, useDispatch } from "react-redux";
+import { filterGames, setUserStore } from "../../store/actions";
 
-const Header = () => {
+const Header = (props) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-
+    const [text, setText] = useState('');
 
     return (
-        <div className="fixed-top">
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div>
-                    <a className="navbar-brand " href="/">
-                        <Controller className="me-2 mx-5" />
+        <div>
+            <Navbar bg="dark" variant="dark" expand="lg" >
+                <Container className="mt-4 mb-4">
+                    <Navbar.Brand href="/">
+                        <Controller className="me-2" />
                         OG Store
-                    </a>
-                </div>
+                    </Navbar.Brand>
+                    <Form className="d-flex ms-5">
+                        <Form.Control
+                            type="search"
+                            placeholder="Search"
+                            className="me-2"
+                            aria-label="Search"
+                            value={text}
+                            onChange={(e) => setText(e.target.value)}
+                        />
+                        <Button variant="outline-success" onClick={() => dispatch(filterGames(text))}>Search</Button>
+                    </Form>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav" className="buttons">
+                        <Nav className="ms-5">
+                            {
+                                !props.user ?
+                                    <Nav.Link onClick={() => navigate("/login")}>
+                                        <PersonCircle className="me-2 mw-75" />
+                                        Sign In / Register
+                                    </Nav.Link>
+                                    :
+                                    <Nav.Link onClick={() => dispatch(setUserStore(null))}>
+                                        <PersonCircle className="me-2 mw-75" />
+                                        Logout
+                                    </Nav.Link>
+                            }
+                            <Nav.Link onClick={() => navigate("/Cart")} className="cart-button">
+                                <Cart4 className="ms-3 me-2 mb-1 " />
+                                Cart
+                                <Badge></Badge>
+                            </Nav.Link>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
 
-                <div>
-                    <form className="form-inline">
-                        <div className="d-flex my-4">
-                            <input className="form-control m-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-success m-2" type="submit">Search</button>
-                        </div>
-                    </form>
-                </div>
-                <div className="collapse navbar-collapse buttons" id="navbarNavDropdown">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link" href="/login">
-                                <button className="rounded p-2" onClick={() => navigate("/SignIn")}>
-                                    <PersonCircle className="me-2 mw-75" />
-                                    Sign In
-                                </button>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <Dropdown>
-                                <Dropdown.Toggle variant="success">
-                                    <div className="p-1 d-flex ">
-                                        <Cart4 className="me-2" />
-                                        <Cart color="white" />
-                                        <Badge></Badge>
-                                    </div>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu >
-                                    <span style={{ padding: 20 }}>Cart is Empty!</span>
-                                    <button>Checkout</button>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-
-                    <button className="navbar-toggler mx-5" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" id="responsive-navbar-nav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                </div>
-
-            </nav>
-        </div >
+        </div>
     );
 }
 
-export default Header;
+const mapStateToProps = function (state) {
+    return {
+        user: state.user
+    }
+}
+
+export default connect(mapStateToProps)(Header);

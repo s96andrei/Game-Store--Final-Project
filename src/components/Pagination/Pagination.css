@@ -1,0 +1,7 @@
+.pagination {
+    gap: 2px;
+}
+
+.page-link {
+    border-radius: 25px;
+}

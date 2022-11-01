@@ -2,3 +2,7 @@
     flex-direction: row-reverse;
     margin-right: 3em;
 }
+
+.cart-button {
+    display: flex;
+}

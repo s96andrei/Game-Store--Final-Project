@@ -4,9 +4,12 @@ import Form from 'react-bootstrap/Form';
 import { useNavigate } from "react-router-dom";
 import Header from '../Header/Header';
 import "./SignIn.css";
+import { useDispatch } from "react-redux";
+import { setUserStore } from '../../store/actions';
 
 const SignIn = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const signInArr = [
         {
@@ -29,19 +32,11 @@ const SignIn = () => {
             email: "andrei.s31@gmail.com",
             password: "asd123456"
         }
-    ]
+    ];
 
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
-    let [user, setUser] = useState(
-        {
-            email: "",
-            password: "",
-            username: ""
-        }
-    );
 
     const changeEmail = (event) => {
         setEmail(event.target.value)
@@ -55,34 +50,28 @@ const SignIn = () => {
 
 
     const logIn = () => {
-        let exist = false;
-
         signInArr.forEach((obj) => {
             if (obj.email === email && obj.password === password && obj.username === userName) {
-                exist = true;
-                setUser(
-                    {
-                        email: obj.email,
-                        password: obj.password,
-                        username: obj.username
-                    }
-                );
+                const user = {
+                    email: obj.email,
+                    password: obj.password,
+                    username: obj.username
+                }
+                dispatch(setUserStore(user));
             }
-        })
+        });
+
         setEmail("");
         setPassword("");
         setUserName("");
         navigate('/home');
     }
 
-    return user.email && user.password && user.username ? <h1>You are loged in</h1 > :
-        <div className='text-white container w-25'>
-            <div>
-                <Header />
-            </div>
-
-            <div className='border p-3 rounded form-container'>
-                <Form>
+    return (
+        <div className='text-white'>
+            <Header />
+            <div className='form-container'>
+                <Form className='border p-4 rounded'>
                     <Form.Group className="mb-3" controlId="formUserName">
                         <Form.Label>User Name</Form.Label>
                         <Form.Control onChange={changeUserName} value={userName} type="text" placeholder="Enter username" />
@@ -100,10 +89,10 @@ const SignIn = () => {
                             Submit
                         </Button>
                     </div>
-
                 </Form>
             </div>
         </div>
+    )
 }
 
 export default SignIn
