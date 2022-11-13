@@ -17,13 +17,16 @@ const Header = (props) => {
             <Navbar bg="dark" variant="dark" expand="lg" >
                 <Container className="mt-4 mb-4">
                     <Navbar.Brand href="/">
-                        <Controller className="me-2" />
-                        OG Store
+                        <div>
+                            <Controller className="me-2 brand" />
+                            <span>OG Store</span>
+                        </div>
+
                     </Navbar.Brand>
                     <Form className="d-flex ms-5">
                         <Form.Control
                             type="search"
-                            placeholder="Search"
+                            placeholder="Search Games"
                             className="me-2"
                             aria-label="Search"
                             value={text}

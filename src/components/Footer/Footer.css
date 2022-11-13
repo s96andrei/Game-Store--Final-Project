@@ -1,3 +1,30 @@
 .page-footer {
     background-color: rgb(156, 156, 156);
 }
+
+.list-unstyled {
+    display: flex;
+    flex-direction: column;
+}
+
+.list-unstyled li a {
+    text-decoration: none;
+    color: #212529;
+    margin-left: 10px;
+}
+
+.description {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+}

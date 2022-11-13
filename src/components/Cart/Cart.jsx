@@ -2,6 +2,8 @@ import React from 'react'
 import Footer from '../Footer/Footer'
 import Header from '../Header/Header'
 import "./Cart.css"
+import { Cart4 } from "react-bootstrap-icons";
+import { Button } from "react-bootstrap";
 
 const Cart = () => {
     return (
@@ -9,15 +11,15 @@ const Cart = () => {
             <div>
                 <Header />
             </div>
-            <div className="container cart-container">
-                <div>
-                    <div className="list-group" id="list-tab" role="tablist">
-                        <a className="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Home</a>
-                        <a className="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-                        <a className="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-                        <a className="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
-                    </div>
-                </div>
+            <div className="cart-container">
+                <Cart4 className='logo h1' />
+                <br />
+                <p className='text-center'>Your cart is empty. Go ahead and add some cool stuff to it! Or <a className='cart-login' href='/login'>log In</a> to check if there's something in it already!</p>
+                <Button variant="outline-success" className="browse-button">
+                    <a href="/">
+                        Browse Deals
+                    </a>
+                </Button>
             </div>
             <div>
                 <Footer />
@@ -26,5 +28,6 @@ const Cart = () => {
 
     )
 }
+
 
 export default Cart

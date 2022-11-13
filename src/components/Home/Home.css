@@ -3,3 +3,21 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
+
+@media only screen and (max-width: 1500px) {
+  .displayed-games {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 1150px) {
+  .displayed-games {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .displayed-games {
+    grid-template-columns: 1fr;
+  }
+}

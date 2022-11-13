@@ -1,0 +1,7 @@
+@media only screen and (max-width: 500px){
+    .paginate {
+        display: flex;
+        width: 250px;
+        flex-wrap: wrap;
+    }
+}

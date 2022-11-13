@@ -6,3 +6,7 @@
 .cart-button {
     display: flex;
 }
+
+.brand, span {
+    color: rgb(6, 177, 6);
+}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Game from "../Games/Game";
-import Pagination from "../Pagination/Pagination";
+import PaginationList from "../Pagination/PaginationList";
 import HomeCarousel from "../Carousel/HomeCarousel";
 import { useDispatch, connect } from "react-redux";
 import { setGamesStore, setPricesStore } from "../../store/actions";
@@ -10,12 +10,9 @@ const Home = (props) => {
 
     const dispatch = useDispatch();
 
-    // const [games, setGames] = useState([]);
-    // const [prices, setPrices] = useState([])
+    const [gamePrice, setGamePrice] = useState()
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
-
-    // const filter = useSelector(state => state.filter);
 
     useEffect(() => {
         getGames();
@@ -25,14 +22,15 @@ const Home = (props) => {
     const getGames = async () => {
         const response = await fetch(`https://api.rawg.io/api/games?key=a3c9cac9b0db4e1f97e8662adb34f2e8&page=${currentPage}&page_size=12`);
         const data = await response.json();
-        // setGames(data.results);
+        console.log(data);
         dispatch(setGamesStore(data.results));
     }
 
     const getPrices = async () => {
         const responsePrices = await fetch(`https://api.escuelajs.co/api/v1/products`);
         const dataPrices = await responsePrices.json();
-        // setPrices(dataPrices);
+        console.log(dataPrices);
+
         dispatch(setPricesStore(dataPrices));
     }
 
@@ -62,8 +60,8 @@ const Home = (props) => {
                 ))}
             </div>
             <div className="d-flex justify-content-center">
-                <Pagination
-                    postsPerPage={postsPerPage}
+                <PaginationList
+                    postsPerPage={currentPosts}
                     totalPosts={props.games.length + 1}
                     paginate={paginate}
                 />
