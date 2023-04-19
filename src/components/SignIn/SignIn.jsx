@@ -13,22 +13,22 @@ const SignIn = () => {
 
     const signInArr = [
         {
-            username: "andrei.s@gmail.com",
+            username: "andrei.s",
             email: "andrei.s@gmail.com",
             password: "asd123"
         },
         {
-            username: "andrei.s1@gmail.com",
+            username: "andrei.s1",
             email: "andrei.s1@gmail.com",
             password: "asd1234"
         },
         {
-            username: "andrei.ss1@gmail.com",
+            username: "andrei.ss1",
             email: "andrei.ss1@gmail.com",
             password: "asd12345"
         },
         {
-            username: "andrei.s31@gmail.com",
+            username: "andrei.s31",
             email: "andrei.s31@gmail.com",
             password: "asd123456"
         }

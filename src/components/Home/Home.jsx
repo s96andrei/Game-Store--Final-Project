@@ -9,8 +9,7 @@ import { setGamesStore, setPricesStore } from "../../store/actions";
 const Home = (props) => {
 
     const dispatch = useDispatch();
-
-    const [gamePrice, setGamePrice] = useState()
+    
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
