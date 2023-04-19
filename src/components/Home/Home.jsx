@@ -9,13 +9,14 @@ import { setGamesStore, setPricesStore } from "../../store/actions";
 const Home = (props) => {
 
     const dispatch = useDispatch();
-    
+
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
     useEffect(() => {
         getGames();
         getPrices();
+        // eslint-disable-next-line
     }, [currentPage]);
 
     const getGames = async () => {
